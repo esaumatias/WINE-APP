@@ -6,7 +6,7 @@ export const getWines = async () => {
         headers: { "Content-type": "application/json; charset=UTF-8" },
       });
       const responseJSON = await response.json();
-      return responseJSON;
+      return responseJSON.items;
     } catch (error) {
       console.log(error);
     }

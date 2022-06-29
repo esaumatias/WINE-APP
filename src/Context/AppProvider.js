@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import AppContext from './AppContext';
 
 function AppProvider({ children }) {
-  const [allCards, setAllCards] = useState({});
+  const [allWines, setAllWines] = useState({});
 
   return (
     <AppContext.Provider
       value={{
-        allCards,
-        setAllCards
+        allWines,
+        setAllWines
       }}
     >
       { children }

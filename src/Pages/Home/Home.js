@@ -1,11 +1,12 @@
 import React from 'react';
+import Header from '../../Components/Header/Header';
 import { Container } from 'react-bootstrap';
 
 
 function Home() {
   return (
     <Container>
-      <h1>Home</h1>
+      <Header />
     </Container>
   );
 }

@@ -24,10 +24,9 @@ function Home() {
   }
 
   function getWineNewPage(value) {
-    setActive(value)
+    setActive(value);
     getWines(value).then((data) => {
       setAllWines(data);
-      console.log(data);
     })
   }
 

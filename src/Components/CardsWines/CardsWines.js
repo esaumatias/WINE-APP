@@ -7,7 +7,7 @@ function CardsWines() {
   const { allWines, setAllWines } = useContext(AppContext);
 
   useEffect(() => {
-    getWines().then((data) => {
+    getWines(1).then((data) => {
         setAllWines(data);
         console.log(data);
     })

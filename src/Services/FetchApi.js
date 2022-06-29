@@ -1,5 +1,5 @@
-export const getWines = async () => {
-    const URL = `https://wine-back-test.herokuapp.com/products?page=1&limit=10`;
+export const getWines = async (page) => {
+    const URL = `https://wine-back-test.herokuapp.com/products?page=${page}&limit=10`;
     try {
       const response = await fetch(URL, {
         method: "get",

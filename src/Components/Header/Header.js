@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
+import searchIcon from '../../Image/searchIcon.png';
+import userIcon from '../../Image/userIcon.png';
+import shoppingBagIcon from '../../Image/shoppingBagIcon.png';
 import {
   Container,
-  Button,
   Navbar,
   Nav,
   Form,
   FormControl,
+  CloseButton
 } from "react-bootstrap";
 
 function Header() {
+  const [showSearch, setShowSearch] = useState(false);
+
   return (
     <Container>
       <Navbar bg="light" expand="lg">
@@ -33,15 +38,20 @@ function Header() {
               <Nav.Link href="#Ofertas">Ofertas</Nav.Link>
               <Nav.Link href="#Eventos">Eventos</Nav.Link>
             </Nav>
-            <Form className="d-flex">
+            {showSearch ? (
+              <Form className="d-flex">
               <FormControl
-                type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"
-              />
-              <Button variant="outline-success">Search</Button>
-            </Form>
+                  type="search"
+                  placeholder="Search"
+                  className="me-2"
+                  aria-label="Search"
+                  onClose={() => setShowSearch(false)} dismissible
+                />
+                <CloseButton onClick={() => setShowSearch(false)}/>
+              </Form>
+            ) : <button onClick={() => setShowSearch(true)}><img src={searchIcon} alt="buttonSearch" /></button>}
+            <div><img src={userIcon} alt="buttonSearch" /></div>
+            <div><img src={shoppingBagIcon} alt="buttonSearch" /></div>
           </Navbar.Collapse>
         </Container>
       </Navbar>

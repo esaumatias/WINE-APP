@@ -5,7 +5,7 @@ import { Card, Row, Col, Spinner, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 function CardsWines() {
-  const { allWines, setAllWines, setSumBag, sumBag } = useContext(AppContext);
+  const { allWines, setAllWines, setItensCart, itensCart } = useContext(AppContext);
 
   useEffect(() => {
     getWines(1).then((data) => {
@@ -13,6 +13,14 @@ function CardsWines() {
         console.log(data);
     })
   }, [setAllWines])
+
+  function addLocalStorage(values) {
+    const { priceNonMember, name, image, id } = values;
+    setItensCart((prevState) => {
+      return { ...prevState, [id]: { name, image, priceNonMember } };
+    });
+    localStorage.setItem('itensCart', JSON.stringify(itensCart));
+  }
 
   return (
     <>
@@ -35,7 +43,7 @@ function CardsWines() {
               </Card>
             </Link>
             <div className="d-grid gap-2" style={{ marginTop: '12px'}}>
-              <Button variant="primary" onClick={() => setSumBag(sumBag + 1)}>
+              <Button variant="primary" onClick={() => addLocalStorage(value)}>
                 Adicionar
               </Button>
             </div>

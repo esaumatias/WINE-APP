@@ -3,15 +3,15 @@ import AppContext from './AppContext';
 
 function AppProvider({ children }) {
   const [allWines, setAllWines] = useState({});
-  const [sumBag, setSumBag] = useState(0);
+  const [itensCart, setItensCart] = useState({});
 
   return (
     <AppContext.Provider
       value={{
         allWines,
         setAllWines,
-        sumBag,
-        setSumBag
+        itensCart,
+        setItensCart
       }}
     >
       { children }

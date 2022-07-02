@@ -59,7 +59,7 @@ function Header() {
               <Link to="shoppingCart">
                 <div className="conteinerIcon bag">
                   <div  className="shoppingBagIcon"></div>
-                  <Badge bg="light" className="sumBag">{sumBag}</Badge>
+                  <Badge bg="light" className="sumBag">1</Badge>
                 </div>
               </Link>
             </div>

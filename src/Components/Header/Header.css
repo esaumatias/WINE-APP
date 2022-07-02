@@ -1,0 +1,40 @@
+.containerIconsNav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.containerIconsNav .searchForm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.containerIconsNav .conteinerIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 1px solid black;
+    margin: 10px;
+}
+
+.containerIconsNav .conteinerIcon .userIcon {
+    align-self: flex-end;
+    margin: 0px;
+    border: 0px;
+}
+
+.containerIconsNav .conteinerIcon .shoppingBagIcon {
+    width: 40px;
+    height: 45px;
+    background: url('../../Image/shoppingBagIcon.png');
+}
+
+.containerIconsNav .conteinerIcon .sumBag {
+    position: absolute;
+    align-self: flex-end;
+}

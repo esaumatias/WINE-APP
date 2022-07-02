@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import searchIcon from '../../Image/searchIcon.png';
 import userIcon from '../../Image/userIcon.png';
-import shoppingBagIcon from '../../Image/shoppingBagIcon.png';
 import {
   Container,
   Navbar,
   Nav,
   Form,
   FormControl,
-  CloseButton
+  CloseButton,
+  Badge
 } from "react-bootstrap";
+import './Header.css';
 
 function Header() {
   const [showSearch, setShowSearch] = useState(false);
@@ -38,20 +39,25 @@ function Header() {
               <Nav.Link href="#Ofertas">Ofertas</Nav.Link>
               <Nav.Link href="#Eventos">Eventos</Nav.Link>
             </Nav>
-            {showSearch ? (
-              <Form className="d-flex">
-              <FormControl
-                  type="search"
-                  placeholder="Search"
-                  className="me-2"
-                  aria-label="Search"
-                  onClose={() => setShowSearch(false)} dismissible
-                />
-                <CloseButton onClick={() => setShowSearch(false)}/>
-              </Form>
-            ) : <button onClick={() => setShowSearch(true)}><img src={searchIcon} alt="buttonSearch" /></button>}
-            <div><img src={userIcon} alt="buttonSearch" /></div>
-            <div><img src={shoppingBagIcon} alt="buttonSearch" /></div>
+            <div className="containerIconsNav">
+              {showSearch ? (
+                <Form className="d-flex searchForm">
+                <FormControl
+                    type="search"
+                    placeholder="Search"
+                    className="me-2"
+                    aria-label="Search"
+                    onClose={() => setShowSearch(false)} dismissible
+                  />
+                  <CloseButton onClick={() => setShowSearch(false)}/>
+                </Form>
+              ) : <button className="conteinerIcon" onClick={() => setShowSearch(true)}><img src={searchIcon} alt="buttonSearch" /></button>}
+              <div className="conteinerIcon"><img src={userIcon} alt="buttonSearch" className="userIcon"/></div>
+              <div className="conteinerIcon">
+                <div  className="shoppingBagIcon"></div>
+                <Badge bg="secondary" className="sumBag">9</Badge>
+                </div>
+            </div>
           </Navbar.Collapse>
         </Container>
       </Navbar>

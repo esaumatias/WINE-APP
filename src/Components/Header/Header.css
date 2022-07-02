@@ -28,6 +28,10 @@
     border: 0px;
 }
 
+.containerIconsNav .bag {
+    background-color: rgb(241, 178, 33);
+}
+
 .containerIconsNav .conteinerIcon .shoppingBagIcon {
     width: 40px;
     height: 45px;
@@ -37,4 +41,6 @@
 .containerIconsNav .conteinerIcon .sumBag {
     position: absolute;
     align-self: flex-end;
+    color: black;
+    border-radius: 50%;
 }

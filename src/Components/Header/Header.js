@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import AppContext from '../../Context/AppContext';
 import searchIcon from '../../Image/searchIcon.png';
 import userIcon from '../../Image/userIcon.png';
 import {
@@ -11,9 +12,11 @@ import {
   Badge
 } from "react-bootstrap";
 import './Header.css';
+import { Link } from 'react-router-dom';
 
 function Header() {
   const [showSearch, setShowSearch] = useState(false);
+  const { sumBag } = useContext(AppContext);
 
   return (
     <Container>
@@ -53,10 +56,12 @@ function Header() {
                 </Form>
               ) : <button className="conteinerIcon" onClick={() => setShowSearch(true)}><img src={searchIcon} alt="buttonSearch" /></button>}
               <div className="conteinerIcon"><img src={userIcon} alt="buttonSearch" className="userIcon"/></div>
-              <div className="conteinerIcon">
-                <div  className="shoppingBagIcon"></div>
-                <Badge bg="secondary" className="sumBag">9</Badge>
+              <Link to="shoppingCart">
+                <div className="conteinerIcon bag">
+                  <div  className="shoppingBagIcon"></div>
+                  <Badge bg="light" className="sumBag">{sumBag}</Badge>
                 </div>
+              </Link>
             </div>
           </Navbar.Collapse>
         </Container>

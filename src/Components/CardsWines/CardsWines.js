@@ -5,7 +5,7 @@ import { Card, Row, Col, Spinner, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 function CardsWines() {
-  const { allWines, setAllWines } = useContext(AppContext);
+  const { allWines, setAllWines, setSumBag, sumBag } = useContext(AppContext);
 
   useEffect(() => {
     getWines(1).then((data) => {
@@ -35,7 +35,7 @@ function CardsWines() {
               </Card>
             </Link>
             <div className="d-grid gap-2" style={{ marginTop: '12px'}}>
-              <Button variant="primary">
+              <Button variant="primary" onClick={() => setSumBag(sumBag + 1)}>
                 Adicionar
               </Button>
             </div>

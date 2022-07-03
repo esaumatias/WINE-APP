@@ -5,21 +5,37 @@ import { Card, Row, Col, Spinner, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 function CardsWines() {
-  const { allWines, setAllWines, setItensCart, itensCart } = useContext(AppContext);
+  const { allWines, setAllWines, setItensCart, itensCart, setSumBag, sumBag } = useContext(AppContext);
 
   useEffect(() => {
     getWines(1).then((data) => {
         setAllWines(data);
-        console.log(data);
     })
   }, [setAllWines])
 
   function addLocalStorage(values) {
     const { priceNonMember, name, image, id } = values;
-    setItensCart((prevState) => {
-      return { ...prevState, [id]: { name, image, priceNonMember } };
-    });
-    localStorage.setItem('itensCart', JSON.stringify(itensCart));
+    const verificarWine = Object.keys(itensCart).find((key) => Number(key) === Number(id));
+    const listSave = ({ name, id, image, priceNonMember });
+
+    if (verificarWine) {
+      const newArray = [itensCart].slice(id, 1)
+      console.log(newArray);
+      setItensCart((prevState) => {
+        return [ ...prevState, listSave ];
+      });
+    } else {
+      setItensCart((prevState) => {
+        return [ ...prevState, listSave ];
+      });
+    }
+
+    if (localStorage.getItem('itensCart') === null) {
+      return localStorage.setItem('itensCart', JSON.stringify([]));
+    } else {
+      localStorage.setItem('itensCart', JSON.stringify(itensCart));
+    }
+    setSumBag(sumBag + 1)
   }
 
   return (

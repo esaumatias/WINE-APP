@@ -9,7 +9,7 @@ import {
   Form,
   FormControl,
   CloseButton,
-  Badge
+  Badge,
 } from "react-bootstrap";
 import './Header.css';
 import { Link } from 'react-router-dom';
@@ -59,7 +59,7 @@ function Header() {
               <Link to="shoppingCart">
                 <div className="conteinerIcon bag">
                   <div  className="shoppingBagIcon"></div>
-                  <Badge bg="light" className="sumBag">1</Badge>
+                  <Badge bg="light" className="sumBag">{sumBag}</Badge>
                 </div>
               </Link>
             </div>

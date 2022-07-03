@@ -1,28 +1,72 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Header from '../../Components/Header/Header';
+import AppContext from '../../Context/AppContext';
+import { Card, Container, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 function ShoppingCart() {
     const [wines, setWines] = useState({});
+    const [allWines, setAllWines] = useState({});
+    const { itensCart, setItensCart, setSumBag, sumBag } = useContext(AppContext); 
 
-    useEffect(() => {
+    useEffect( () => {
       if (localStorage.getItem('itensCart') === null) {
           return localStorage.setItem('itensCart', JSON.stringify([]));
       } else {
         const itemsList = JSON.parse(localStorage.getItem('itensCart'));
-        setWines(itemsList)
-        console.log(itemsList);
+
+        const removeRepeated = itemsList.filter(function (a) {
+          return !this[JSON.stringify(a)] && (this[JSON.stringify(a)] = true);
+        }, Object.create(null))
+
+        setWines(removeRepeated);
+        setAllWines(itemsList);
       }
     },[setWines])
-    console.log(wines);
+
+    function addWine(values) {
+      setItensCart((prevState) => {
+        return [ ...prevState, values ];
+      });
+      if (localStorage.getItem('itensCart') === null) {
+        return localStorage.setItem('itensCart', JSON.stringify([]));
+      } else {
+        localStorage.setItem('itensCart', JSON.stringify(itensCart));
+      }
+      const itemsList = JSON.parse(localStorage.getItem('itensCart'));
+      setAllWines(itemsList);
+      setSumBag(sumBag + 1)
+    }
+
+    function removeWine(index) {
+      // localStorage.removeItem('itensCart');
+      const newWine = allWines.indexOf((value) => value !== index);
+      console.log(newWine);
+      // if (localStorage.getItem('itensCart') === null) {
+      //   return localStorage.setItem('itensCart', JSON.stringify([]));
+      // } else {
+      //   localStorage.setItem('itensCart', JSON.stringify(newWine));
+      // }
+    }
+
     return (
-        <>
-        <Header />
-        {wines.lenght > 0 ? (
-          wines.map((values, index) => (
-            <h1 key={index}>{values.name}</h1>
-          ))
-        ) : null}
-        </>
+        <Container>
+          <Header />
+          <Link to="/">Voltar</Link>
+          {wines.length > 0 ? (
+            wines.map((values, index) => (
+              <Card key={index}> 
+                <Card.Body>
+                  <Card.Title>{values.name}</Card.Title>
+                  <Card.Text>{`R$ ${values.priceNonMember * allWines.filter((value) => value.name === values.name).length}`}</Card.Text>
+                  <Button variant="primary" onClick={() => removeWine(index)}>-</Button>
+                  {allWines.filter((value) => value.name === values.name).length}
+                  <Button variant="primary" onClick={() => addWine(values)}>+</Button>
+                </Card.Body>
+              </Card>
+            ))
+          ) : null}
+        </Container>
     );
 }
 

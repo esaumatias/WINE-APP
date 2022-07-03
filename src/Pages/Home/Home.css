@@ -1,0 +1,13 @@
+.containerHome {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.containerHome .containerLeft {
+    flex:1;
+}
+
+.containerHome .containerRigth {
+    flex:3;
+}

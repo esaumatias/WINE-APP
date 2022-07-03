@@ -16,27 +16,18 @@ function CardsWines() {
 
   function addLocalStorage(values) {
     const { priceNonMember, name, image, id } = values;
-    const verificarWine = Object.keys(itensCart).find((key) => Number(key) === Number(id));
     const listSave = ({ name, id, image, priceNonMember });
 
-    if (verificarWine) {
-      const newArray = [itensCart].slice(id, 1)
-      console.log(newArray);
-      setItensCart((prevState) => {
-        return [ ...prevState, listSave ];
-      });
-    } else {
-      setItensCart((prevState) => {
-        return [ ...prevState, listSave ];
-      });
-    }
+    setItensCart((prevState) => {
+      return [ ...prevState, listSave ];
+    })
 
     if (localStorage.getItem('itensCart') === null) {
       return localStorage.setItem('itensCart', JSON.stringify([]));
     } else {
       localStorage.setItem('itensCart', JSON.stringify(itensCart));
     }
-    setSumBag(sumBag)
+    setSumBag(sumBag + 1)
   }
 
   return (

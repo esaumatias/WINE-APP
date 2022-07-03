@@ -53,6 +53,7 @@ function ShoppingCart() {
         <Container>
           <Header />
           <Link to="/">Voltar</Link>
+          <h1 style={{ textAlign: 'center' }}>Carrinho de compras</h1>
           {wines.length > 0 ? (
             wines.map((values, index) => (
               <Card key={index}> 

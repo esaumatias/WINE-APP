@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import AppContext from '../../Context/AppContext';
 import searchIcon from '../../Image/searchIcon.png';
 import userIcon from '../../Image/userIcon.png';
+import { getAllWines } from '../../Services/FetchApi';
 import {
   Container,
   Navbar,
@@ -20,8 +21,14 @@ function Header() {
 
   function searchBar({ target }) {
     const { value } = target;
-    const newArray = dataWines.filter((values) => values.name.toLowerCase().includes(value.toLowerCase()));
-    setAllWines(newArray);
+    if (value === '') {
+      setAllWines(dataWines);
+    } else {
+      getAllWines().then((data) => {
+        const newArray = data.filter((values) => values.name.toLowerCase().includes(value.toLowerCase()));
+        setAllWines(newArray);
+      })
+    }
   }
 
   return (
@@ -56,7 +63,7 @@ function Header() {
                     placeholder="Search"
                     className="me-2"
                     aria-label="Search"
-                    onClose={() => setShowSearch(false)} dismissible
+                    onClose={() => setShowSearch(false)} dismissible={true}
                   />
                   <CloseButton onClick={() => setShowSearch(false)}/>
                 </Form>

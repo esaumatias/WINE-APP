@@ -31,8 +31,8 @@ function ProductDetail() {
     useEffect(() => {
         const detail = allWines.find((value) => value.id === Number(id));
         setDetailProduct(detail)
-        console.log(detail);
     }, [allWines, id])
+    
     return (
         <Container>
           <Header />

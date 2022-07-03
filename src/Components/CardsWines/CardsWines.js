@@ -51,7 +51,7 @@ function CardsWines() {
               </Card>
             </Link>
             <div className="d-grid gap-2" style={{ marginTop: '12px'}}>
-              <Button variant="primary" onClick={() => addLocalStorage(value)}>
+              <Button variant="success" onClick={() => addLocalStorage(value)}>
                 Adicionar
               </Button>
             </div>

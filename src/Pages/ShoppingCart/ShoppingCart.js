@@ -32,21 +32,23 @@ function ShoppingCart() {
         return localStorage.setItem('itensCart', JSON.stringify([]));
       } else {
         localStorage.setItem('itensCart', JSON.stringify(itensCart));
+        setAllWines(itensCart);
+        setSumBag(sumBag + 1)
       }
-      const itemsList = JSON.parse(localStorage.getItem('itensCart'));
-      setAllWines(itemsList);
-      setSumBag(sumBag + 1)
     }
 
-    function removeWine(index) {
-      // localStorage.removeItem('itensCart');
-      const newWine = allWines.indexOf((value) => value !== index);
-      console.log(newWine);
-      // if (localStorage.getItem('itensCart') === null) {
-      //   return localStorage.setItem('itensCart', JSON.stringify([]));
-      // } else {
-      //   localStorage.setItem('itensCart', JSON.stringify(newWine));
-      // }
+    function removeWine(name) {
+      const itenCart = allWines.slice();
+      const index = allWines.findIndex((item) => item.name === name);
+      setSumBag(sumBag - 1)
+      if (localStorage.getItem('itensCart') === null) {
+        return localStorage.setItem('itensCart', JSON.stringify([]));
+      } else {
+        itenCart.splice(index, 1);
+        localStorage.removeItem('itensCart');
+        localStorage.setItem('itensCart', JSON.stringify(itenCart));
+        setAllWines(itenCart)
+      }
     }
 
     return (
@@ -60,7 +62,7 @@ function ShoppingCart() {
                 <Card.Body>
                   <Card.Title>{values.name}</Card.Title>
                   <Card.Text>{`R$ ${values.priceNonMember * allWines.filter((value) => value.name === values.name).length}`}</Card.Text>
-                  <Button variant="primary" onClick={() => removeWine(index)}>-</Button>
+                  <Button variant="primary" onClick={() => removeWine(values.name)}>-</Button>
                   {allWines.filter((value) => value.name === values.name).length}
                   <Button variant="primary" onClick={() => addWine(values)}>+</Button>
                 </Card.Body>

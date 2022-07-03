@@ -5,13 +5,14 @@ import { Card, Row, Col, Spinner, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 function CardsWines() {
-  const { allWines, setAllWines, setItensCart, itensCart, setSumBag, sumBag } = useContext(AppContext);
+  const { allWines, setAllWines, setItensCart, itensCart, setSumBag, sumBag, setDataWines } = useContext(AppContext);
 
   useEffect(() => {
     getWines(1).then((data) => {
         setAllWines(data);
+        setDataWines(data);
     })
-  }, [setAllWines])
+  }, [setAllWines, setDataWines])
 
   function addLocalStorage(values) {
     const { priceNonMember, name, image, id } = values;
@@ -35,7 +36,7 @@ function CardsWines() {
     } else {
       localStorage.setItem('itensCart', JSON.stringify(itensCart));
     }
-    setSumBag(sumBag + 1)
+    setSumBag(sumBag)
   }
 
   return (

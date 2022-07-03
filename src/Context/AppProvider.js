@@ -3,6 +3,7 @@ import AppContext from './AppContext';
 
 function AppProvider({ children }) {
   const [allWines, setAllWines] = useState({});
+  const [dataWines, setDataWines] = useState({});
   const [itensCart, setItensCart] = useState([]);
   const [sumBag, setSumBag] = useState(0);
 
@@ -24,7 +25,9 @@ function AppProvider({ children }) {
         itensCart,
         setItensCart,
         sumBag,
-        setSumBag
+        setSumBag,
+        dataWines,
+        setDataWines
       }}
     >
       { children }

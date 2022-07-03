@@ -16,7 +16,13 @@ import { Link } from 'react-router-dom';
 
 function Header() {
   const [showSearch, setShowSearch] = useState(false);
-  const { sumBag } = useContext(AppContext);
+  const { sumBag, setAllWines, dataWines } = useContext(AppContext);
+
+  function searchBar({ target }) {
+    const { value } = target;
+    const newArray = dataWines.filter((values) => values.name.toLowerCase().includes(value.toLowerCase()));
+    setAllWines(newArray);
+  }
 
   return (
     <Container>
@@ -44,7 +50,7 @@ function Header() {
             </Nav>
             <div className="containerIconsNav">
               {showSearch ? (
-                <Form className="d-flex searchForm">
+                <Form className="d-flex searchForm" onChange={({ target }) => searchBar({ target })}>
                 <FormControl
                     type="search"
                     placeholder="Search"

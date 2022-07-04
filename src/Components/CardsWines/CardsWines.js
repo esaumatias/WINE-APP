@@ -33,17 +33,17 @@ function CardsWines() {
   return (
     <>
     {allWines.length > 0 ? (
-        <Row xs={1} md={3} className="g-2">
+        <Row xs={1} md={3} className="g-5">
         {allWines.map((value, index) => (
           <Col key={index}>
-            <Link to={`/productDetail/${ value.id }`}>
-              <Card>
-                <Card.Img variant="top" src={value.image} style={{ width: '150px'}}/>
+            <Link to={`/productDetail/${ value.id }`} style={{ textDecoration: 'none', color: 'black', textAlign: 'center'}}>
+              <Card style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <Card.Img variant="top" src={value.image} style={{ width: '150px', margin: 'auto'}}/>
                 <Card.Body>
                   <Card.Title>{value.name}</Card.Title>
-                  <div>
-                    <Card.Text>{value.price}</Card.Text>
-                    <div>{`${value.discount}%OFF`}</div>
+                  <div style={{ display: 'flex', justifyContent: 'center'}}>
+                    <Card.Text>{`R$ ${value.price}`}</Card.Text>
+                    <div style={{ backgroundColor: 'pink', height: '50%', marginLeft: '5px'}}>{`${value.discount}%OFF`}</div>
                   </div>
                   <strong>{`SÓCIO WINE: R$ ${value.priceMember}`}</strong>
                   <Card.Text>{`NÃO SÓCIO: R$ ${value.priceNonMember}`}</Card.Text>
